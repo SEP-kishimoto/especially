@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* *****************************************************************
+	CSS for list member and serch condition
+****************************************************************** */
+.left_condition
+{
+	float:left;
+}
+.right_condition
+{
+	float:left;
+}
+.center_condition
+{
+	float:left;
+}
+.condition_item
+{
+	width:380px;
+	margin:5px;
+}
+.condition_item .condition_title
+{
+	width:100px;
+	float:left;
+}
+.condition_item .condition_control
+{
+	float:left;
+	width:200px;
+}
+.condition_item .condition_control input
+{
+	width:200px;
+}
+.cbo_date
+{
+	margin:10px 0px 0px 105px;
+}
+.btn_search
+{
+	margin:10px auto auto 200px;
+}
+.table_content
+{
+	overflow-x:scroll;
+	overflow-Y:hidden;
+	border:1px solid #CCCCCC;
+}
+/* *****************************************************************
+	End CSS for list member and serch condition
+****************************************************************** */
+/* *****************************************************************
+	CSS for change member form
+****************************************************************** */
+.view_item
+{
+	width:400px;
+	margin:5px;
+}
+.view_item .view_title
+{
+	float:left;
+	width:130px;	
+}
+.view_item .view_control
+{
+	float:left;	
+	width:250px;
+}
+.view_item .view_control input
+{
+	width:250px;
+}
+/* *****************************************************************
+	End CSS for change member form
+****************************************************************** */
