@@ -564,7 +564,9 @@ ownerList = common.getOwnerList();
 								<%=ownerList.get(i).getOWNER_TEL1() %>-<%=ownerList.get(i).getOWNER_TEL2() %>-<%=ownerList.get(i).getOWNER_TEL3() %><br>
 								<%=ownerList.get(i).getOWNER_MOBILE1() %>-<%=ownerList.get(i).getOWNER_MOBILE2() %>-<%=ownerList.get(i).getOWNER_MOBILE3() %>
 							</td>
-							<td><%=ownerList.get(i).getREGIST_DATE() %> <br> <%=ownerList.get(i).getUPDATE_DATE() %>
+							<td>
+								<%=ownerList.get(i).getREGIST_DATE() %><br>
+								<%=ownerList.get(i).getUPDATE_DATE() %>
 							</td>
 						</tr>
 						<%} %>
