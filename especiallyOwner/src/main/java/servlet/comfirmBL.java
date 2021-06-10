@@ -36,7 +36,6 @@ public class comfirmBL extends HttpServlet {
 		 * request情報取得
 		 */
 		ownerModel ownermodel = new ownerModel();
-		System.out.println(ownermodel.ownerDataRequest(request));
 		
 		/*
 		 * DBへ登録

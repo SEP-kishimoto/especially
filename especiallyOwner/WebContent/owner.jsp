@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*" import="servlet.*" %>
+	pageEncoding="UTF-8" import="java.util.*" import="servlet.*" import="java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +26,8 @@
 </head>
 <body>
 <%
-ArrayList<ownerBean> ownerList = new ArrayList<ownerBean>();
-ownerList = common.getOwnerList();
-
+List<HashMap<String, String>> ownerList = new ArrayList<HashMap<String, String>>();
+ownerList = common.ownerDataList(request);
 %>
 	<div class="logo"></div>
 	<div id="wrapper">
@@ -369,53 +368,14 @@ ownerList = common.getOwnerList();
 
 							</select> / <select tabindex="15" id="MONTH_FROM" name="MONTH_FROM">
 								<option></option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-
+								<%for (int i = 1; i < 13; i++) {%>
+								<option value="<%=i%>"><%=i%></option>
+								<%} %>
 							</select> / <select tabindex="16" id="DAY_FROM" name="DAY_FROM">
 								<option></option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-								<option value="31">31</option>
-
+								<%for (int i = 1; i < 32; i++) {%>
+								<option value="<%=i%>"><%=i%></option>
+								<%} %>
 							</select> ～ <select tabindex="17" id="YEAR_TO" name="YEAR_TO">
 								<option></option>
 								<option value="2016">2016</option>
@@ -427,52 +387,15 @@ ownerList = common.getOwnerList();
 
 							</select> / <select tabindex="18" id="MONTH_TO" name="MONTH_TO">
 								<option></option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
+								<%for (int i = 1; i < 13; i++) {%>
+								<option value="<%=i%>"><%=i%></option>
+								<%} %>
 
 							</select> / <select tabindex="19" id="DAY_TO" name="DAY_TO">
 								<option></option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-								<option value="31">31</option>
+								<%for (int i = 1; i < 32; i++) {%>
+								<option value="<%=i%>"><%=i%></option>
+								<%} %>
 
 							</select> <select tabindex="20" id="date_register" name="date_register">
 								<option value="1" selected="selected">登録日</option>
@@ -535,10 +458,10 @@ ownerList = common.getOwnerList();
 								onclick="btn_henkou_click(1);"></td>
 							<td align="center">
 								<select id="status1" name="status1">
-								<%if (ownerList.get(i).getSTATUS() == 1) {%>
+								<%if (Integer.parseInt(ownerList.get(i).get("STATUS")) == 1) {%>
 									<option value="1" selected="selected">有効</option>
 									<option value="2">無効</option>
-								<%} else if (ownerList.get(i).getSTATUS() == 2) {%>
+								<%} else if (Integer.parseInt(ownerList.get(i).get("STATUS")) == 2) {%>
 									<option value="1">有効</option>
 									<option value="2" selected="selected">無効</option>
 								<%} %>
@@ -547,26 +470,26 @@ ownerList = common.getOwnerList();
 							</td>
 							<td>テスト姓 テスト名</td>
 							<td>
-								<%=ownerList.get(i).getOWNER_L_NAME() %> <%=ownerList.get(i).getOWNER_F_NAME() %><br>
-								<%=ownerList.get(i).getOWNER_L_NAME_KANA() %> <%=ownerList.get(i).getOWNER_F_NAME_KANA() %>
+								<%=ownerList.get(i).get("OWNER_L_NAME") %> <%=ownerList.get(i).get("OWNER_F_NAME") %><br>
+								<%=ownerList.get(i).get("OWNER_L_NAME_KANA") %> <%=ownerList.get(i).get("OWNER_F_NAME_KANA") %>
 							</td>
 							<td>
-								<%=ownerList.get(i).getOWNER_CORP_NAME() %> <br>
-								<%=ownerList.get(i).getOWNER_CORP_NAME_KANA() %>
+								<%=ownerList.get(i).get("OWNER_CORP_NAME") %> <br>
+								<%=ownerList.get(i).get("OWNER_CORP_NAME_KANA") %>
 							</td>
 							<td>
-								<%=ownerList.get(i).getOWNER_ZIP().substring(0, 3) %>-<%=ownerList.get(i).getOWNER_ZIP().substring(3, 7) %><br>
-								<%=ownerList.get(i).getOWNER_ADDRESS1() %><br>
-								<%=ownerList.get(i).getOWNER_ADDRESS2() %>
+								<%=ownerList.get(i).get("OWNER_ZIP").substring(0, 3) %>-<%=ownerList.get(i).get("OWNER_ZIP").substring(3, 7) %><br>
+								<%=ownerList.get(i).get("OWNER_ADDRESS1") %><br>
+								<%=ownerList.get(i).get("OWNER_ADDRESS2") %>
 							</td>
-							<td><%=ownerList.get(i).getOWNER_MAIL() %></td>
+							<td><%=ownerList.get(i).get("OWNER_MAIL") %></td>
 							<td>
-								<%=ownerList.get(i).getOWNER_TEL1() %>-<%=ownerList.get(i).getOWNER_TEL2() %>-<%=ownerList.get(i).getOWNER_TEL3() %><br>
-								<%=ownerList.get(i).getOWNER_MOBILE1() %>-<%=ownerList.get(i).getOWNER_MOBILE2() %>-<%=ownerList.get(i).getOWNER_MOBILE3() %>
+								<%=ownerList.get(i).get("OWNER_TEL1") %>-<%=ownerList.get(i).get("OWNER_TEL2") %>-<%=ownerList.get(i).get("OWNER_TEL3") %><br>
+								<%=ownerList.get(i).get("OWNER_MOBILE1") %>-<%=ownerList.get(i).get("OWNER_MOBILE2") %>-<%=ownerList.get(i).get("OWNER_MOBILE3") %>
 							</td>
 							<td>
-								<%=ownerList.get(i).getREGIST_DATE() %><br>
-								<%=ownerList.get(i).getUPDATE_DATE() %>
+								<%=ownerList.get(i).get("REGIST_DATE").replaceAll("-", "/") %><br>
+								<%=ownerList.get(i).get("UPDATE_DATE").replaceAll("-", "/") %>
 							</td>
 						</tr>
 						<%} %>
